@@ -25,3 +25,18 @@ for (item in domains){
 }
 
 console.log(emailDictionary)
+
+
+// printing top 10 in order
+var items = Object.keys(emailDictionary).map(function(key) {
+    return [key, emailDictionary[key]];
+  });
+  
+items.sort(function(first, second) {
+return second[1] - first[1];
+});
+
+top10 = items.slice(0, 10);
+for (item in top10){
+    console.log(top10[item][0])
+}
