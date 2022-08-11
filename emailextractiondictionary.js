@@ -13,15 +13,14 @@ for (key in email_addresses){
     domains.push(email_addresses[key].split('@')[1])
 }
 
-
 for (item in domains){
     let domain = domains[item]
     console.log(domain)
-    if (domain in usedDomains){
+    if (usedDomains.includes(domain)){
         emailDictionary[domain] += 1
     } else {
         emailDictionary[domain] = 1
-        usedDomains.push(emailDictionary[domain])
+        usedDomains.push(domain)
     }
 }
 
