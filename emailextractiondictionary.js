@@ -6,16 +6,16 @@ let emailDictionary = {}
 let domains = []
 let usedDomains = []
 
-let pattern = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+$)/gim;
+let pattern = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gim;
 let email_addresses = input.match(pattern)
 
 for (key in email_addresses){
     domains.push(email_addresses[key].split('@')[1])
 }
 
+console.log(domains.length)
 for (item in domains){
     let domain = domains[item]
-    console.log(domain)
     if (usedDomains.includes(domain)){
         emailDictionary[domain] += 1
     } else {
@@ -24,6 +24,4 @@ for (item in domains){
     }
 }
 
-
 console.log(emailDictionary)
-// console.log(email_addresses.match(pattern2))
