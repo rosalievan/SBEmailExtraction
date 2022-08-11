@@ -2,6 +2,7 @@ const fs = require('fs')
 
 input = fs.readFileSync("test.txt", 'utf8')
 
+function returnEmailDict(input){
 let emailDictionary = {}
 let domains = []
 let usedDomains = []
@@ -13,7 +14,8 @@ for (key in email_addresses){
     domains.push(email_addresses[key].split('@')[1])
 }
 
-console.log(domains.length)
+// console.log(Array.isArray(domains))
+
 for (item in domains){
     let domain = domains[item]
     if (usedDomains.includes(domain)){
@@ -24,19 +26,26 @@ for (item in domains){
     }
 }
 
-console.log(emailDictionary)
-
-
-// printing top 10 in order
-var items = Object.keys(emailDictionary).map(function(key) {
-    return [key, emailDictionary[key]];
-  });
-  
-items.sort(function(first, second) {
-return second[1] - first[1];
-});
-
-top10 = items.slice(0, 10);
-for (item in top10){
-    console.log(top10[item][0])
+return emailDictionary
 }
+
+function frequentDomains(emailDictionary, number){
+    domains = []
+    for (item in emailDictionary){
+        if (emailDictionary[item] >= number){
+            domains.push(item)
+        }
+        }
+    return domains
+    }
+
+const readline = require('readline').createInterface(
+    {input: process.stdin,
+    output: process.stdout,},
+    
+    );
+
+readline.question(`What number of occurences does the domain require `, number => {
+    console.log(frequentDomains(returnEmailDict(input), number));
+    readline.close()
+})
