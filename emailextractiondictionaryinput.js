@@ -11,7 +11,8 @@ let pattern = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gim;
 let email_addresses = input.match(pattern)
 
 for (key in email_addresses){
-    domains.push(email_addresses[key].split('@')[1])
+    fulldomain = email_addresses[key].split('@')[1]
+    domains.push(fulldomain.split('.')[0])
 }
 
 // console.log(Array.isArray(domains))
@@ -28,6 +29,8 @@ for (item in domains){
 
 return emailDictionary
 }
+
+console.log(returnEmailDict(input))
 
 function frequentDomains(emailDictionary, number){
     domains = []
