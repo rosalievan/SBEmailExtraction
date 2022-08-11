@@ -1,7 +1,6 @@
 const fs = require('fs')
 
 input = fs.readFileSync("test.txt", 'utf8')
-console.log(input)
 
 var counter = 0
  
