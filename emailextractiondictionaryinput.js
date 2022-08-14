@@ -1,12 +1,15 @@
 const fs = require('fs');
+var readlineSync = require('readline-sync');
 
 input = fs.readFileSync("test.txt", 'utf8');
+
 let emailDictionary = {};
 let domains = [];
 let usedDomains = [];
-let frequentDomains = [];
+let frequentDomains=[];
 let emailAddresses = [];
-let userInput = 0;
+
+
 const readline = require('readline').createInterface(
     {
         input: process.stdin,
@@ -15,7 +18,7 @@ const readline = require('readline').createInterface(
 );
 
 
-function setEmailAdresses() {
+function setEmailAddresses() {
     let pattern = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gim;
     emailAddresses = input.match(pattern);
 }
@@ -40,7 +43,7 @@ function populateEmailDict() {
 }
 
 function setFrequentDomains(number) {
-    domains = [];
+
     for (let item in emailDictionary) {
         if (emailDictionary[item] >= number) {
             frequentDomains.push(item);
@@ -49,17 +52,15 @@ function setFrequentDomains(number) {
 }
 
 
-setEmailAdresses();
+setEmailAddresses();
 setDomains();
 populateEmailDict();
 
-readline.question(`What number of occurrences per domain ? :`, number => {
-    // console.log(frequentDomains(returnEmailDict(input), number));
-    userInput = number;
-    readline.close();
-})
-
+let userInput = readlineSync.question('Over how many times the domain to occure? : ');
 console.log(userInput);
+
 setFrequentDomains(userInput);
 console.log(frequentDomains);
+// setFrequentDomains(userInput);
+
 // console.log(emailDictionary);
