@@ -10,14 +10,6 @@ let frequentDomains=[];
 let emailAddresses = [];
 
 
-const readline = require('readline').createInterface(
-    {
-        input: process.stdin,
-        output: process.stdout,
-    },
-);
-
-
 function setEmailAddresses() {
     let pattern = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gim;
     emailAddresses = input.match(pattern);
@@ -55,12 +47,17 @@ function setFrequentDomains(number) {
 setEmailAddresses();
 setDomains();
 populateEmailDict();
+console.log('**** the dictionary ****');
+console.log(emailDictionary);
+console.log('****    ---    ****');
+
 
 let userInput = readlineSync.question('Over how many times the domain to occure? : ');
 console.log(userInput);
 
 setFrequentDomains(userInput);
 console.log(frequentDomains);
-// setFrequentDomains(userInput);
 
-// console.log(emailDictionary);
+
+
+
